@@ -311,11 +311,7 @@ export default function Overview() {
                       )}
                       <Badge
                         variant={
-                          job.status as
-                            | "waiting"
-                            | "applied"
-                            | "rejected"
-                            | "favorite"
+                          job.status as "waiting" | "applied" | "rejected"
                         }
                       >
                         {job.status.charAt(0).toUpperCase() +
