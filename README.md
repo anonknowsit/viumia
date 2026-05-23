@@ -90,22 +90,22 @@ Viumia is built with modern web technologies packaged as a native desktop applic
 
 ### Overview
 <br/>
-<img src="landing/screenshots/overview.png" alt="Overview" width="900"/>
+<img src="docs/screenshots/overview.png" alt="Overview" width="900"/>
 <br/><br/>
 
 ### Job Overview
 <br/>
-<img src="landing/screenshots/jobs.png" alt="Jobs" width="900"/>
+<img src="docs/screenshots/jobs.png" alt="Jobs" width="900"/>
 <br/><br/>
 
 ### Document Library
 <br/>
-<img src="landing/screenshots/documents.png" alt="Documents" width="900"/>
+<img src="docs/screenshots/documents.png" alt="Documents" width="900"/>
 <br/><br/>
 
 ### Job Detail & Notes
 <br/>
-<img src="landing/screenshots/detail.png" alt="Detail" width="900"/>
+<img src="docs/screenshots/detail.png" alt="Detail" width="900"/>
 <br/><br/>
 
 ---
