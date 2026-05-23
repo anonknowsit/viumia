@@ -12,29 +12,29 @@ Viumia is a free, open-source desktop application that helps you organize your e
 
 ---
 
-## ✨ Features
+## Features
 
-### 📋 Track Applications
+### Track Applications
 Log every job you apply to with company name, role, location, status, and salary expectations. Filter and sort by:
 - **Waiting** — Applications pending review
 - **Applied** — Recently submitted applications
 - **Rejected** — Applications that didn't work out
 - **Favorites** — Jobs you want to prioritize
 
-### 📁 Document Library
+### Document Library
 Upload your CVs, cover letters, certificates, and portfolios once. Link them to any job application without duplicate uploads. Keep everything organized and accessible.
 
-### 💬 Notes & Comments
+### Notes & Comments
 Add detailed interview notes, follow-up reminders, and personal comments to every job entry. Never forget important details from conversations or interviews.
 
-### 📊 Statistics Dashboard
+### Statistics Dashboard
 Visualize your job search progress with insightful charts showing:
 - Applications over time
 - Response rates
 - Status breakdowns
 - Favorite jobs count
 
-### 🔒 100% Offline & Private
+### 100% Offline & Private
 Your data stays on your machine. Period.
 - SQLite database (local storage)
 - No cloud sync
@@ -42,15 +42,15 @@ Your data stays on your machine. Period.
 - No tracking or analytics
 - Fully private by design
 
-### 💾 Backup & Restore
+### Backup & Restore
 Export all your data as a ZIP backup and restore it anytime. Your job search history is always safe and portable.
 
-### ⭐ Favorites
+### Favorites
 Mark important jobs as favorites for quick access. Filter your view to see only your top-priority applications.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Download
 Get the latest release for Windows:
@@ -69,7 +69,7 @@ Get the latest release for Windows:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 Viumia is built with modern web technologies packaged as a native desktop application:
 
@@ -84,7 +84,7 @@ Viumia is built with modern web technologies packaged as a native desktop applic
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Overview
 <br/>
