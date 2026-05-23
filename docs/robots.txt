@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anonknowsit.github.io/viumia/sitemap.xml

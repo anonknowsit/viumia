@@ -4,6 +4,8 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows-blue)](https://github.com/anonknowsit/viumia/releases)
 [![Status](https://img.shields.io/badge/Status-Stable-green.svg)](https://github.com/anonknowsit/viumia)
 
+🌐 **[Visit the website](https://anonknowsit.github.io/viumia/)** &nbsp;|&nbsp; 📥 **[Download for Windows](https://github.com/anonknowsit/viumia/releases/latest)**
+
 **Never lose track of a job application again.**
 
 Viumia is a free, open-source desktop application that helps you organize your entire job search in one beautiful place. Track applications, manage documents, add notes, and visualize your progress — all while keeping your data 100% private and offline.
