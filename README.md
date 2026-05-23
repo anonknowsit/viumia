@@ -90,25 +90,21 @@ Viumia is built with modern web technologies packaged as a native desktop applic
 <br/>
 <img src="landing/screenshots/overview.png" alt="Overview" width="900"/>
 <br/><br/>
-*Dashboard view showing all your job applications at a glance with statistics and quick filters.*
 
 ### Job Overview
 <br/>
 <img src="landing/screenshots/jobs.png" alt="Jobs" width="900"/>
 <br/><br/>
-*Track all your applications at a glance with filtering and sorting capabilities.*
 
 ### Document Library
 <br/>
 <img src="landing/screenshots/documents.png" alt="Documents" width="900"/>
 <br/><br/>
-*Upload once, link to any job. Keep your CVs and cover letters organized.*
 
 ### Job Detail & Notes
 <br/>
 <img src="landing/screenshots/detail.png" alt="Detail" width="900"/>
 <br/><br/>
-*Deep dive into any application with notes, linked documents, and timeline tracking.*
 
 ---
 
