@@ -1,0 +1,27 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default capabilities for Job Planner",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "shell:allow-open",
+    "fs:default",
+    "fs:allow-read-dir",
+    "fs:allow-read-file",
+    "fs:allow-write-file",
+    "fs:allow-copy-file",
+    "fs:allow-mkdir",
+    "fs:allow-read",
+    "fs:allow-write",
+    "fs:allow-create",
+    "fs:allow-remove",
+    "fs:allow-app-write",
+    "fs:allow-app-write-recursive",
+    "fs:allow-appdata-write",
+    "fs:allow-appdata-write-recursive",
+    "dialog:default",
+    "dialog:allow-open",
+    "dialog:allow-save"
+  ]
+}

@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Viumia — Smart Job Application Tracker</title>
+        <link rel="icon" type="image/jpeg" href="viumia_icon.jpeg" />
+        <meta
+            name="description"
+            content="Track job applications, organize documents, and stay on top of your job search with Viumia."
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            brand: {
+                                50: "#eef2ff",
+                                100: "#e0e7ff",
+                                200: "#c7d2fe",
+                                300: "#a5b4fc",
+                                400: "#818cf8",
+                                500: "#6366f1",
+                                600: "#4f46e5",
+                                700: "#4338ca",
+                                800: "#3730a3",
+                                900: "#312e81",
+                                950: "#1e1b4b",
+                            },
+                        },
+                        fontFamily: {
+                            sans: [
+                                "Inter",
+                                "system-ui",
+                                "-apple-system",
+                                "sans-serif",
+                            ],
+                        },
+                    },
+                },
+            };
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* Smooth gradient animation */
+            @keyframes gradient-shift {
+                0%,
+                100% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+            }
+            .animate-gradient {
+                background-size: 200% 200%;
+                animation: gradient-shift 8s ease infinite;
+            }
+            /* Floating animation for mockup */
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            /* Fade-in on scroll */
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                transition:
+                    opacity 0.6s ease,
+                    transform 0.6s ease;
+            }
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased"
+    >
+        <!-- Navigation -->
+        <nav
+            class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800"
+        >
+            <div
+                class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+            >
+                <a href="#" class="flex items-center gap-2 font-bold text-xl">
+                    <img
+                        src="viumia_icon.jpeg"
+                        alt="Viumia"
+                        class="w-8 h-8 rounded-lg"
+                    />
+                    Viumia
+                </a>
+                <div class="hidden md:flex items-center gap-8 text-sm">
+                    <a
+                        href="#features"
+                        class="hover:text-brand-600 transition-colors"
+                        >Features</a
+                    >
+                    <a
+                        href="#screenshots"
+                        class="hover:text-brand-600 transition-colors"
+                        >Screenshots</a
+                    >
+                    <a
+                        href="#download"
+                        class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    >
+                        Get Viumia
+                    </a>
+                </div>
+                <!-- Mobile menu toggle -->
+                <button id="menu-toggle" class="md:hidden p-2">
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div
+                id="mobile-menu"
+                class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950"
+            >
+                <div class="px-6 py-4 space-y-3 text-sm">
+                    <a href="#features" class="block hover:text-brand-600"
+                        >Features</a
+                    >
+                    <a href="#screenshots" class="block hover:text-brand-600"
+                        >Screenshots</a
+                    >
+                    <a href="#download" class="block hover:text-brand-600"
+                        >Download</a
+                    >
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 px-6">
+            <div class="max-w-6xl mx-auto text-center">
+                <div
+                    class="inline-flex items-center gap-2 bg-brand-50 dark:bg-brand-950/50 text-brand-700 dark:text-brand-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Free &amp; Open Source
+                </div>
+                <h1
+                    class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight"
+                >
+                    Never lose track of a<br />
+                    <span
+                        class="bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent animate-gradient"
+                    >
+                        job application
+                    </span>
+                </h1>
+                <p
+                    class="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+                >
+                    Viumia is a free, desktop app to organize your job search.
+                    Track applications, manage documents, and follow up — all in
+                    one beautiful place.
+                </p>
+                <div
+                    class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <a
+                        href="https://github.com/anonknowsit/viumia/releases/latest"
+                        target="_blank"
+                        rel="noopener"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-8 py-3.5 rounded-xl transition-colors text-lg shadow-lg shadow-brand-600/25"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                            />
+                        </svg>
+                        Download for Windows
+                    </a>
+                    <a
+                        href="https://github.com/anonknowsit/viumia"
+                        target="_blank"
+                        rel="noopener"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 font-semibold px-8 py-3.5 rounded-xl transition-colors text-lg"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                            />
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+
+                <!-- Hero Mockup / Screenshot -->
+                <div class="mt-16">
+                    <div class="relative mx-auto max-w-4xl">
+                        <!-- Browser chrome -->
+                        <div
+                            class="bg-zinc-900 dark:bg-zinc-800 rounded-t-xl px-4 py-3 flex items-center gap-2"
+                        >
+                            <div class="flex gap-1.5">
+                                <div
+                                    class="w-3 h-3 rounded-full bg-red-500"
+                                ></div>
+                                <div
+                                    class="w-3 h-3 rounded-full bg-yellow-500"
+                                ></div>
+                                <div
+                                    class="w-3 h-3 rounded-full bg-green-500"
+                                ></div>
+                            </div>
+                            <div
+                                class="flex-1 text-center text-xs text-zinc-500"
+                            >
+                                Viumia — Job Planner
+                            </div>
+                        </div>
+                        <!-- Screenshot placeholder — replace src with your screenshot -->
+                        <div
+                            class="bg-zinc-100 dark:bg-zinc-800 rounded-b-xl border-x border-b border-zinc-200 dark:border-zinc-700 aspect-[16/10] flex items-center justify-center overflow-hidden"
+                        >
+                            <!-- Replace this placeholder with your actual screenshot -->
+                            <img
+                                src="screenshots/overview.png"
+                                alt="Viumia Dashboard Screenshot"
+                                class="w-full h-full object-cover rounded-b-xl"
+                                onerror="
+                                    this.style.display = 'none';
+                                    this.nextElementSibling.style.display =
+                                        'flex';
+                                "
+                            />
+                            <div
+                                class="hidden flex-col items-center gap-3 text-zinc-400"
+                            >
+                                <svg
+                                    class="w-16 h-16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                <span class="text-sm"
+                                    >Place your screenshot at
+                                    <code
+                                        class="bg-zinc-200 dark:bg-zinc-700 px-1.5 py-0.5 rounded"
+                                        >landing/screenshots/overview.png</code
+                                    ></span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section
+            id="features"
+            class="py-20 px-6 bg-zinc-50 dark:bg-zinc-900/50"
+        >
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                        Everything you need to land your next role
+                    </h2>
+                    <p
+                        class="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto"
+                    >
+                        Stop juggling spreadsheets and scattered files. Viumia
+                        keeps your entire job search organized in one place.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div
+                        class="fade-in bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md hover:border-brand-300 dark:hover:border-brand-700 transition-all"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center mb-4"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-600 dark:text-brand-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">
+                            Track Applications
+                        </h3>
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                        >
+                            Log every job you apply to with company, role,
+                            status, and salary. Filter by waiting, applied,
+                            interview, or rejected.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div
+                        class="fade-in bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md hover:border-brand-300 dark:hover:border-brand-700 transition-all"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center mb-4"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-600 dark:text-brand-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">
+                            Document Library
+                        </h3>
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                        >
+                            Upload your CVs, cover letters, and certificates
+                            once. Link them to any job — no duplicate uploads.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div
+                        class="fade-in bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md hover:border-brand-300 dark:hover:border-brand-700 transition-all"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center mb-4"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-600 dark:text-brand-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">
+                            Notes &amp; Comments
+                        </h3>
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                        >
+                            Add interview notes, follow-up reminders, and
+                            personal comments to every job entry.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div
+                        class="fade-in bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md hover:border-brand-300 dark:hover:border-brand-700 transition-all"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center mb-4"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-600 dark:text-brand-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">
+                            Statistics Dashboard
+                        </h3>
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                        >
+                            Visualize your job search progress with charts
+                            showing applications over time, response rates, and
+                            status breakdowns.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div
+                        class="fade-in bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md hover:border-brand-300 dark:hover:border-brand-700 transition-all"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center mb-4"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-600 dark:text-brand-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">
+                            100% Offline &amp; Private
+                        </h3>
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                        >
+                            Your data stays on your machine. SQLite database, no
+                            cloud, no accounts, no tracking. Fully private by
+                            design.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div
+                        class="fade-in bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md hover:border-brand-300 dark:hover:border-brand-700 transition-all"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 flex items-center justify-center mb-4"
+                        >
+                            <svg
+                                class="w-6 h-6 text-brand-600 dark:text-brand-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">
+                            Backup &amp; Restore
+                        </h3>
+                        <p
+                            class="text-zinc-600 dark:text-zinc-400 leading-relaxed"
+                        >
+                            Export all your data as a ZIP backup and restore it
+                            anytime. Your job search is always safe.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="py-20 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                        See it in action
+                    </h2>
+                    <p class="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+                        Clean, modern interface designed for focus.
+                    </p>
+                </div>
+
+                <div class="space-y-16">
+                    <!-- Screenshot 1: Jobs Overview -->
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold mb-3">Job Overview</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 mb-6">
+                            All your applications at a glance. Sort, filter, and
+                            track status changes.
+                        </p>
+                        <div
+                            class="bg-zinc-100 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 flex items-center justify-center overflow-hidden w-full max-w-7xl mx-auto h-[300px] md:h-[500px] lg:h-[720px] cursor-pointer hover:opacity-90 transition-opacity"
+                            onclick="openImageModal('screenshots/jobs.png')"
+                        >
+                            <img
+                                src="screenshots/jobs.png"
+                                alt="Jobs Overview"
+                                class="w-full h-full object-cover pointer-events-none"
+                                onerror="
+                                    this.style.display = 'none';
+                                    this.nextElementSibling.style.display =
+                                        'flex';
+                                "
+                            />
+                            <div
+                                class="hidden flex-col items-center gap-2 text-zinc-400"
+                            >
+                                <svg
+                                    class="w-12 h-12"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                <span class="text-sm"
+                                    >screenshots/jobs.png</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 2: Documents -->
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold mb-3">
+                            Document Library
+                        </h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 mb-6">
+                            Upload once, link to any job. Keep your CVs and
+                            cover letters organized.
+                        </p>
+                        <div
+                            class="bg-zinc-100 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 flex items-center justify-center overflow-hidden w-full max-w-7xl mx-auto h-[300px] md:h-[500px] lg:h-[720px] cursor-pointer hover:opacity-90 transition-opacity"
+                            onclick="
+                                openImageModal('screenshots/documents.png')
+                            "
+                        >
+                            <img
+                                src="screenshots/documents.png"
+                                alt="Document Library"
+                                class="w-full h-full object-cover pointer-events-none"
+                                onerror="
+                                    this.style.display = 'none';
+                                    this.nextElementSibling.style.display =
+                                        'flex';
+                                "
+                            />
+                            <div
+                                class="hidden flex-col items-center gap-2 text-zinc-400"
+                            >
+                                <svg
+                                    class="w-12 h-12"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                <span class="text-sm"
+                                    >screenshots/documents.png</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot 3: Job Detail -->
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold mb-3">
+                            Job Detail &amp; Notes
+                        </h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 mb-6">
+                            Deep dive into any application with notes, linked
+                            documents, and timeline tracking.
+                        </p>
+                        <div
+                            class="bg-zinc-100 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700 flex items-center justify-center overflow-hidden w-full max-w-7xl mx-auto h-[300px] md:h-[500px] lg:h-[720px] cursor-pointer hover:opacity-90 transition-opacity"
+                            onclick="openImageModal('screenshots/detail.png')"
+                        >
+                            <img
+                                src="screenshots/detail.png"
+                                alt="Job Detail View"
+                                class="w-full h-full object-cover pointer-events-none"
+                                onerror="
+                                    this.style.display = 'none';
+                                    this.nextElementSibling.style.display =
+                                        'flex';
+                                "
+                            />
+                            <div
+                                class="hidden flex-col items-center gap-2 text-zinc-400"
+                            >
+                                <svg
+                                    class="w-12 h-12"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                <span class="text-sm"
+                                    >screenshots/detail.png</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section
+            id="download"
+            class="py-20 px-6 bg-gradient-to-br from-brand-600 to-brand-800 text-white"
+        >
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="fade-in">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                        Ready to organize your job search?
+                    </h2>
+                    <p class="mt-4 text-lg text-brand-100 max-w-xl mx-auto">
+                        Download Viumia for Windows. Free, open-source, and no
+                        account required.
+                    </p>
+
+                    <div
+                        class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+                    >
+                        <!-- UPDATE: Replace with your actual GitHub release URL -->
+                        <a
+                            href="https://github.com/anonknowsit/viumia/releases/latest"
+                            target="_blank"
+                            rel="noopener"
+                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-brand-700 hover:bg-brand-50 font-semibold px-8 py-3.5 rounded-xl transition-colors text-lg shadow-lg"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                />
+                            </svg>
+                            Download for Windows
+                        </a>
+                        <a
+                            href="https://github.com/anonknowsit/viumia"
+                            target="_blank"
+                            rel="noopener"
+                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur font-semibold px-8 py-3.5 rounded-xl transition-colors text-lg border border-white/20"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                />
+                            </svg>
+                            GitHub Repository
+                        </a>
+                    </div>
+
+                    <!-- System Requirements -->
+                    <div
+                        class="mt-12 bg-white/10 backdrop-blur rounded-xl p-6 text-left max-w-md mx-auto border border-white/10"
+                    >
+                        <h3 class="font-semibold mb-3 flex items-center gap-2">
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                                />
+                            </svg>
+                            System Requirements
+                        </h3>
+                        <ul class="space-y-2 text-brand-100 text-sm">
+                            <li class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-green-300"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                Windows 10 or later
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-green-300"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                ~100 MB disk space
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-green-300"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                No internet connection needed
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-green-300"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                No account or sign-up required
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 px-6 border-t border-zinc-200 dark:border-zinc-800">
+            <div
+                class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500"
+            >
+                <p>&copy; 2025 Viumia. Free &amp; open-source software.</p>
+                <div class="flex items-center gap-6">
+                    <a
+                        href="https://github.com/anonknowsit/viumia"
+                        target="_blank"
+                        rel="noopener"
+                        class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                    >
+                        GitHub
+                    </a>
+                    <a
+                        href="https://github.com/anonknowsit/viumia/issues"
+                        target="_blank"
+                        rel="noopener"
+                        class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                    >
+                        Report Issues
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Dark Mode Toggle (follows system preference by default) -->
+        <button
+            id="theme-toggle"
+            class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors shadow-lg"
+            aria-label="Toggle dark mode"
+        >
+            <svg
+                class="w-5 h-5 hidden dark:block text-yellow-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    clip-rule="evenodd"
+                />
+            </svg>
+            <svg
+                class="w-5 h-5 block dark:hidden text-zinc-700"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                />
+            </svg>
+        </button>
+
+        <script>
+            // Dark mode: follow system preference, allow toggle
+            (function () {
+                const stored = localStorage.getItem("theme");
+                if (
+                    stored === "dark" ||
+                    (!stored &&
+                        window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches)
+                ) {
+                    document.documentElement.classList.add("dark");
+                }
+                document
+                    .getElementById("theme-toggle")
+                    .addEventListener("click", () => {
+                        const html = document.documentElement;
+                        if (html.classList.contains("dark")) {
+                            html.classList.remove("dark");
+                            localStorage.setItem("theme", "light");
+                        } else {
+                            html.classList.add("dark");
+                            localStorage.setItem("theme", "dark");
+                        }
+                    });
+            })();
+
+            // Mobile menu toggle
+            document
+                .getElementById("menu-toggle")
+                .addEventListener("click", function () {
+                    document
+                        .getElementById("mobile-menu")
+                        .classList.toggle("hidden");
+                });
+            // Close mobile menu on link click
+            document
+                .getElementById("mobile-menu")
+                .addEventListener("click", function (e) {
+                    if (e.target.tagName === "A") {
+                        this.classList.add("hidden");
+                    }
+                });
+
+            // Fade-in on scroll (Intersection Observer)
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
+
+            document
+                .querySelectorAll(".fade-in")
+                .forEach((el) => observer.observe(el));
+            // Image lightbox modal
+            function openImageModal(src) {
+                const modal = document.getElementById("image-modal");
+                const modalImg = document.getElementById("modal-image");
+                const fallback = modalImg.nextElementSibling;
+                modalImg.src = src;
+                modalImg.style.display = "block";
+                fallback.style.display = "none";
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+                document.body.style.overflow = "hidden";
+            }
+            function closeImageModal() {
+                const modal = document.getElementById("image-modal");
+                const modalImg = document.getElementById("modal-image");
+                modal.classList.add("hidden");
+                modal.classList.remove("flex");
+                modalImg.src = "";
+                document.body.style.overflow = "";
+            }
+            // Close modal on backdrop click
+            document
+                .getElementById("image-modal")
+                .addEventListener("click", function (e) {
+                    if (e.target === this) {
+                        closeImageModal();
+                    }
+                });
+            // Close modal on Escape key
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    closeImageModal();
+                }
+            });
+            // Make screenshot images clickable
+            document
+                .querySelectorAll(".screenshot-clickable")
+                .forEach(function (img) {
+                    img.addEventListener("click", function () {
+                        openImageModal(this.src);
+                    });
+                });
+        </script>
+
+        <!-- Image Lightbox Modal -->
+        <div
+            id="image-modal"
+            class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm items-center justify-center p-4"
+        >
+            <div class="relative w-full max-w-7xl">
+                <!-- Close button -->
+                <button
+                    onclick="closeImageModal()"
+                    class="absolute -top-10 right-0 text-white hover:text-zinc-300 transition-colors p-2"
+                    aria-label="Close"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+                <img
+                    id="modal-image"
+                    alt="Screenshot"
+                    class="w-full h-auto max-h-[90vh] object-contain rounded-xl shadow-2xl"
+                    onerror="
+                        this.style.display = 'none';
+                        this.nextElementSibling.style.display = 'flex';
+                    "
+                />
+                <div
+                    class="hidden flex-col items-center justify-center gap-4 text-zinc-400 h-[400px]"
+                >
+                    <svg
+                        class="w-16 h-16"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                    </svg>
+                    <p class="text-lg">Screenshot not available yet</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
