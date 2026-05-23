@@ -1,12 +1,12 @@
 [package]
-name = "job_planner"
+name = "viumia"
 version = "0.1.0"
-description = "A local-first Job Planner application"
+description = "Viumia — Smart Job Application Tracker"
 authors = ["you"]
 edition = "2021"
 
 [lib]
-name = "job_planner_lib"
+name = "viumia_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

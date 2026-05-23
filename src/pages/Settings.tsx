@@ -123,7 +123,7 @@ export default function Settings() {
         .slice(0, 19);
       const selected = await dialog.save({
         title: "Save Backup",
-        defaultPath: `job_planner_backup_${timestamp}.zip`,
+        defaultPath: `viumia_backup_${timestamp}.zip`,
         filters: [
           {
             name: "Backup Files",

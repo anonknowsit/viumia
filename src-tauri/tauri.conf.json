@@ -1,7 +1,7 @@
 {
-  "productName": "Job Planner",
+  "productName": "Viumia",
   "version": "0.1.0",
-  "identifier": "com.jobplanner.app",
+  "identifier": "com.viumia.app",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:1420",

@@ -25,7 +25,7 @@ pub fn run() {
             // Ensure the directory exists before creating the database
             std::fs::create_dir_all(&data_dir).expect("failed to create data directory");
 
-            let db_path = data_dir.join("job_planner.db");
+            let db_path = data_dir.join("viumia.db");
             println!("Database path: {}", db_path.display());
 
             // Use SqliteConnectOptions API - avoids URL parsing issues on Windows

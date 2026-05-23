@@ -820,7 +820,7 @@ pub async fn get_storage_usage(
         eprintln!("get_storage_usage: failed to get data dir: {}", e);
         format!("Failed to get data dir: {}", e)
     })?;
-    let db_path = data_dir.join("job_planner.db");
+    let db_path = data_dir.join("viumia.db");
     let db_size = std::fs::metadata(&db_path)
         .map(|m| m.len() as i64)
         .unwrap_or(0);
@@ -856,10 +856,10 @@ pub async fn export_data(
     })?;
     eprintln!("export_data: data_dir = {}", data_dir.display());
 
-    let db_path = data_dir.join("job_planner.db");
+    let db_path = data_dir.join("viumia.db");
 
     let timestamp = chrono::Local::now().format("%Y%m%d_%H%M%S");
-    let backup_filename = format!("job_planner_backup_{}.zip", timestamp);
+    let backup_filename = format!("viumia_backup_{}.zip", timestamp);
     let backup_path = data_dir.join(&backup_filename);
 
     let file = std::fs::File::create(&backup_path)
@@ -875,7 +875,7 @@ pub async fn export_data(
             std::fs::read(&db_path).map_err(|e| format!("Failed to read database: {}", e))?;
 
         builder
-            .start_file("job_planner.db", options)
+            .start_file("viumia.db", options)
             .map_err(|e| format!("Failed to add DB to ZIP: {}", e))?;
         builder
             .write_all(&db_data)
@@ -950,7 +950,7 @@ pub async fn export_data_to(
     })?;
     eprintln!("export_data_to: exporting to {}", export_path);
 
-    let db_path = data_dir.join("job_planner.db");
+    let db_path = data_dir.join("viumia.db");
     let backup_path = std::path::PathBuf::from(&export_path);
 
     let file = std::fs::File::create(&backup_path)
@@ -966,7 +966,7 @@ pub async fn export_data_to(
             std::fs::read(&db_path).map_err(|e| format!("Failed to read database: {}", e))?;
 
         builder
-            .start_file("job_planner.db", options)
+            .start_file("viumia.db", options)
             .map_err(|e| format!("Failed to add DB to ZIP: {}", e))?;
         builder
             .write_all(&db_data)
@@ -1068,8 +1068,8 @@ pub async fn import_data(
             .map_err(|e| format!("Failed to read entry: {}", e))?;
 
         // Extract database file
-        if entry_name == "job_planner.db" {
-            let db_path = data_dir.join("job_planner.db");
+        if entry_name == "viumia.db" {
+            let db_path = data_dir.join("viumia.db");
             std::fs::write(&db_path, &content)
                 .map_err(|e| format!("Failed to write database: {}", e))?;
         }
